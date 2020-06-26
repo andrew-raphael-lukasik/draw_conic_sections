@@ -84,34 +84,6 @@ public static class ConicSections
 	}
 
 
-	public static void DrawArrow ( Vector2 p1 , Vector2 p2 )
-	{
-		float d = math.distance( p1 , p2 );
-		Vector3 v1 = new Vector3{ x=p1.x , y=p1.y };
-		Vector3 v2 = new Vector3{ x=p2.x , y=p2.y };
-		Vector3 arrowLen = (v1-v2).normalized * d * 0.06f;
-		Vector3 v3 = v2 + Quaternion.Euler( 0 , 0 , (90f/7f) ) * arrowLen;
-		Vector3 v4 = v2 + Quaternion.Euler( 0 , 0 , -(90f/7f) ) * arrowLen;
-		Gizmos.DrawLine( v1 , v2 );
-		Gizmos.DrawLine( v2 , v2 );
-		Gizmos.DrawLine( v2 , v3 );
-		Gizmos.DrawLine( v3 , v4 );
-		Gizmos.DrawLine( v4 , v2 );
-	}
-	public static void DrawArrow ( Vector3 v1 , Vector3 v2 )
-	{
-		Vector3 arrowLen = (v1-v2).normalized * math.distance(v1,v2) * 0.06f;
-		Vector3 camAxis = v2 - Camera.current.transform.position;
-		Vector3 v3 = v2 + Quaternion.AngleAxis( 90f/7f , camAxis ) * arrowLen;
-		Vector3 v4 = v2 + Quaternion.AngleAxis( -90f/7f , camAxis ) * arrowLen;
-		Gizmos.DrawLine( v1 , v2 );
-		Gizmos.DrawLine( v2 , v2 );
-		Gizmos.DrawLine( v2 , v3 );
-		Gizmos.DrawLine( v3 , v4 );
-		Gizmos.DrawLine( v4 , v2 );
-	}
-
-
 	/// <param name="a"> +-y = ( b * math.sqrt( **a**^2 + x^2 ) ) / **a** </param>
 	/// <param name="b"> +-y = ( **b** * math.sqrt( a^2 + x^2 ) ) / a </param>
 	public static void DrawHyperbolaAtFoci
